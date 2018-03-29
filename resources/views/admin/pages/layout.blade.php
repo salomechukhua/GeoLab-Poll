@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="{{ url('css/fullcalendar.css')}}">
   <link href="{{ url('css/widgets.css')}}" rel="stylesheet">
   <link href="{{ url('css/style.css')}}" rel="stylesheet">
+  <link href="{{ url('css/mystyle.css')}}" rel="stylesheet">
   <link href="{{ url('css/style-responsive.css')}}" rel="stylesheet" />
   <link href="{{ url('css/xcharts.min.css')}}" rel=" stylesheet">
   <link href="{{ url('css/jquery-ui-1.10.4.min.css')}}" rel="stylesheet">

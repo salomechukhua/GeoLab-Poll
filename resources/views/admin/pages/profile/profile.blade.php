@@ -39,19 +39,19 @@ dd($_FILES);
     <table class="table table-bordered">
       @foreach($admin as $value)
 
-      <img style="width: 300px; height: 300px; padding-bottom: 30px;" src="{{ $value->image }}">
+      <img class="imginprofile" src="{{ $value->image }}">
 
-      <tr style="margin-bottom: 10px;">
+      <tr>
 
-        <td style="background-color:#ccccff; width: 120px;">სახელი</td>
-        <td style="background-color: white;">{{ $value->name }}</td>
+        <td class="tablebackgroundh">სახელი</td>
+        <td class="tablebackground">{{ $value->name }}</td>
       </tr>
       
       
       <tr>
         
-        <td style="background-color:#ccccff; width: 120px;">მეილი</td>
-        <td style="background-color: white;">{{ $value->email }}</td>
+        <td class="tablebackgroundh">მეილი</td>
+        <td class="tablebackground">{{ $value->email }}</td>
         
       </tr>
       

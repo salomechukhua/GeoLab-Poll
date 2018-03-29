@@ -61,7 +61,7 @@
       <li class="activeitem">
         <a class="" href="{!!url('/admin/dashboard')!!}">
           <i class="icon_house_alt"></i>
-          <span>Dashboard</span>
+          <span>მთავარი</span>
         </a>
       </li>
       
