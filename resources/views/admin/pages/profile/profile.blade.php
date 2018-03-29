@@ -40,7 +40,6 @@ dd($_FILES);
       @foreach($admin as $value)
 
       <img class="imginprofile" src="{{ $value->image }}">
-
       <tr>
 
         <td class="tablebackgroundh">სახელი</td>

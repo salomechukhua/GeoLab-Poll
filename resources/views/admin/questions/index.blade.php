@@ -42,7 +42,7 @@ dd($_FILES);
 
 
 
-		<table class="table table-bordered">
+		<table class="table table-bordered" style="background-color: white;">
 			<tr>
 				<th width="50px">No.</th>
 				<th>კითხვა</th>
