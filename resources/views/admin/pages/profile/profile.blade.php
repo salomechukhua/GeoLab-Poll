@@ -38,7 +38,10 @@ dd($_FILES);
 
     <table class="table table-bordered">
       @foreach($admin as $value)
-      <tr>
+
+      <img style="width: 300px; height: 300px; padding-bottom: 30px;" src="{{ $value->image }}">
+
+      <tr style="margin-bottom: 10px;">
 
         <td style="background-color:#ccccff; width: 120px;">სახელი</td>
         <td style="background-color: white;">{{ $value->name }}</td>

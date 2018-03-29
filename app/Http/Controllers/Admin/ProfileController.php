@@ -37,12 +37,14 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        /*request()->validate([
+        request()->validate([
             'name' => 'required',
             'email' => 'required',
         ]);
+
+
         User::create($request->all());
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა დამატებულია!');*/
+        return redirect()->route('pages.profile.index')->with('success', 'კითხვა დამატებულია!');
     }
 
     /**
@@ -82,7 +84,23 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required',
         ]);
-        User::find($id)->update($request->all());
+
+        $originalFile = " ";
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $destinationPath = public_path('img');
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+        }
+        
+        
+        $data = [
+            'name' => $request->name,
+            'image' => $originalFile,
+            'email' => $request->email,
+        ];
+        User::find($id)->update($data);
+
         return redirect()->route('pages.profile.index')->with('success', 'პროფილი რედაქტირებულია!');
     }
 
@@ -94,7 +112,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        /*User::find($id)->delete();
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა წაშლილია!');*/
+        User::find($id)->delete();
+        return redirect()->route('pages.profile.index')->with('success', 'კითხვა წაშლილია!');
     }
 }

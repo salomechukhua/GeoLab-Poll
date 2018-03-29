@@ -29,7 +29,7 @@
 		@endif
 
 
-		{!! Form::model($admin, ['method' => 'PATCH', 'route' => ['profile.update', $admin->id]]) !!}
+		{!! Form::model($admin, ['method' => 'PATCH', 'route' => ['profile.update', $admin->id],  'files' => true]) !!}
 		@include('admin.pages.profile.form')
 		{!! Form::close() !!}
 

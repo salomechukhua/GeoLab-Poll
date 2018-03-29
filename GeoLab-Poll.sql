@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 05:19 PM
+-- Generation Time: Mar 29, 2018 at 05:44 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -98,7 +98,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bbUkCwxBtw44aBvDPZHAT2U0Sr1oyddBzZrQ5PxF', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNjlNRndQZHZIeVdUUXlON3kzYUNzOWdTbFBTYnJlQXdMT2c3N0RXTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sb2NhbGhvc3QvR2VvTGFiLVBvbGwvcHVibGljL2FkbWluL3F1ZXN0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1522336699);
+('bbUkCwxBtw44aBvDPZHAT2U0Sr1oyddBzZrQ5PxF', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNjlNRndQZHZIeVdUUXlON3kzYUNzOWdTbFBTYnJlQXdMT2c3N0RXTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvR2VvTGFiLVBvbGwvcHVibGljL2FkbWluL3BhZ2VzL3Byb2ZpbGUvMS9lZGl0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1522338208);
 
 -- --------------------------------------------------------
 
@@ -110,6 +110,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -120,8 +121,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@polls.ge', '$2y$10$FDEGLfGzhzoz0m7vBZBlROmWkA9/iet.QRC8/tUf0PIDkiNTYtAuq', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `image`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@polls.ge', 'https://is3-ssl.mzstatic.com/image/thumb/Purple4/v4/f9/ee/7a/f9ee7a6f-355d-eef7-c622-aacb555d5046/mzl.ygcffwfd.jpg/1200x630bb.jpg', '$2y$10$FDEGLfGzhzoz0m7vBZBlROmWkA9/iet.QRC8/tUf0PIDkiNTYtAuq', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
