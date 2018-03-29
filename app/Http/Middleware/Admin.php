@@ -13,7 +13,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->username=="admin"){
+        if(Auth::check()){
             return $next($request);
         }else{
             return redirect('/admin');

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
- 
-class ProfileController extends Controller
+use App\Question;
+
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $admin = User::all(); 
-        return view('admin.pages.profile.profile', ['admin'=>$admin]);
+        $question = Question::all(); 
+        return view('admin.questions.index', ['question'=>$question]);
     }
 
     /**
@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.profile.create');
+        return view('admin.questions.create');
     }
 
     /**
@@ -37,12 +37,12 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        /*request()->validate([
-            'name' => 'required',
-            'email' => 'required',
+        request()->validate([
+            'question' => 'required',
+            'subject' => 'required',
         ]);
-        User::create($request->all());
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა დამატებულია!');*/
+        Question::create($request->all());
+        return redirect()->route('questions.index')->with('success', 'კითხვა დამატებულია!');
     }
 
     /**
@@ -53,8 +53,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        /*$admin = User::find($id);
-        return view('admin.pages.profile.show', compact('admin'));*/
+        $question = Question::find($id);
+        return view('admin.questions.show', compact('question'));
     }
 
     /**
@@ -65,8 +65,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $admin = User::find($id);
-        return view('admin.pages.profile.edit', compact('admin'));
+        $question = Question::find($id);
+        return view('admin.questions.edit', compact('question'));
     }
 
     /**
@@ -79,11 +79,11 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'question' => 'required',
+            'subject' => 'required',
         ]);
-        User::find($id)->update($request->all());
-        return redirect()->route('pages.profile.index')->with('success', 'პროფილი რედაქტირებულია!');
+        Question::find($id)->update($request->all());
+        return redirect()->route('questions.index')->with('success', 'კითხვა რედაქტირებულია!');
     }
 
     /**
@@ -94,7 +94,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        /*User::find($id)->delete();
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა წაშლილია!');*/
+        Question::find($id)->delete();
+        return redirect()->route('questions.index')->with('success', 'კითხვა წაშლილია!');
     }
 }
