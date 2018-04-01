@@ -31,10 +31,7 @@
               </span>
           @endif
         </div>
-        <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> პაროლი დაგავიწყდათ?</a></span>
-            </label>
+        
         <button class="btn btn-primary btn-lg btn-block" type="submit">შესვლა</button>
         <!-- <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button> -->
       </div>
@@ -47,7 +44,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
           -->
-          <a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          <a href="https://bootstrapmade.com/">Created</a> by <a href="https://bootstrapmade.com/">Tamar Mekhrishvili</a>
         </div>
     </div>
   </div>

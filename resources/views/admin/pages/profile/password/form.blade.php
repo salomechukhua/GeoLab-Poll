@@ -30,7 +30,7 @@
 
 
 	<div class="col-xs-12">
-		<a class="btn btn-xs btn-info" href="{{ route('profile.index') }}">გაუქმება</a>
-		<button type="submit" name="button" class="btn btn-xs btn-success">შენახვა</button>
+		<a class="btn btn-sm btn-info" href="{{ route('profile.index') }}">გაუქმება</a>
+		<button type="submit" name="button" class="btn btn-sm btn-success">შენახვა</button>
 	</div>
 </div>

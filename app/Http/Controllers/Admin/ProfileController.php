@@ -40,23 +40,14 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required',
         ]);
-        $originalFile = " ";
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $destinationPath = public_path('img');
-            $originalFile = $file->getClientOriginalName();
-            $file->move($destinationPath, $originalFile);
-        }
         
         
         $data = [
             'name' => $request->name,
-            'image' => $originalFile,
             'email' => $request->email,
-            'password' => bcrypt('$request->password'),
         ];
         User::find($id)->update($data);
-        return redirect()->route('profile.index')->with('success', 'User Updated Succesfully');
+        return redirect()->route('profile.index')->with('success', 'პირადი მონაცემები განახლებულია!');
     }
     
 }

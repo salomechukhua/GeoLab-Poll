@@ -10,8 +10,6 @@ use Auth;
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
-
-    protected $username = 'username';
     protected $redirectTo = '/admin/dashboard';
     protected $guard = 'admin';
 

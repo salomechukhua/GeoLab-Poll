@@ -38,8 +38,9 @@ dd($_FILES);
 
     <table class="table table-bordered">
       @foreach($admins as $value)
-
-      <img class="imginprofile" src="{{ $value->image }}">
+      <a href="{{ route('image.edit', $value->id) }}" title="განაახლე პროფილის ფოტო">
+        <img class="imginprofile" src="http://localhost/GeoLab-Poll/public/img/{{$value->image}}">
+      </a>
       <tr>
 
         <td class="tablebackgroundh">სახელი</td>

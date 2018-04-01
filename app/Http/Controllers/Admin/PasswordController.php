@@ -6,22 +6,7 @@ use Illuminate\Support\Facades\Input;
 use App\User;
 class PasswordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-         
-        return view('admin.pages.profile.password.profile');
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
+    
     public function edit($id)
     {
         $admin = User::find($id);
@@ -36,13 +21,13 @@ class PasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $password = User::all();
+        $pass = User::all();
         request()->validate([
             'oldpassword' => 'required',
             'password' => 'required',
             'repassword' => 'required',
         ]);
-        foreach ($password as $value) {
+        foreach ($pass as $value) {
            
        
             if($value->password == $request->oldpassword){
@@ -52,12 +37,12 @@ class PasswordController extends Controller
                         'repassword' => bcrypt('$request->repassword'),
                     ];
                     User::find($id)->update($data);
-                    return redirect()->route('password.index')->with('success', 'პაროლი განახლებულია!');
+                    return redirect()->route('profile.index')->with('success', 'პაროლი განახლებულია!');
                 } else {
-                    return redirect()->route('password.index');
+                    return redirect()->route('profile.index');
                 }
             } else {
-                return redirect()->route('password.index');
+                return redirect()->route('profile.index');
             }
         }
     }
