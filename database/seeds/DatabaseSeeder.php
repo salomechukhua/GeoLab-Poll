@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
         	'name'=>'admin',
         	'email'=>'admin@polls.ge',
-            'image' => 'mandala-to-download-in-pdf-6.jpg',
+            'image' => 'owll.jpg',
         	'password'=>bcrypt('admin123'),
             'repassword'=>bcrypt('admin123'),
         ]);

@@ -21,29 +21,21 @@ class PasswordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pass = User::all();
+        
         request()->validate([
-            'oldpassword' => 'required',
             'password' => 'required',
             'repassword' => 'required',
         ]);
-        foreach ($pass as $value) {
-           
-       
-            if($value->password == $request->oldpassword){
-                if($request->password == $request->repassword){
-                    $data = [
-                        'password' => bcrypt('$request->password'),
-                        'repassword' => bcrypt('$request->repassword'),
-                    ];
-                    User::find($id)->update($data);
-                    return redirect()->route('profile.index')->with('success', 'პაროლი განახლებულია!');
-                } else {
-                    return redirect()->route('profile.index');
-                }
-            } else {
-                return redirect()->route('profile.index');
-            }
+        
+        if($request->password == $request->repassword){
+            $data = [
+                'password' => bcrypt('$request->password'),
+                'repassword' => bcrypt('$request->repassword'),
+            ];
+            User::find($id)->update($data);
+            return redirect()->route('profile.index')->with('success', 'პაროლი განახლებულია!');
+        } else {
+            return redirect()->route('profile.index');
         }
     }
     
