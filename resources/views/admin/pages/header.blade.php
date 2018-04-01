@@ -12,8 +12,8 @@
     <!--  search form start -->
     <ul class="nav top-menu">
       <li>
-        <form class="navbar-form">
-          <input class="form-control" placeholder="Search" type="text">
+        <form class="navbar-form" action="{{ url('/admin/search') }}" method="GET">
+          <input name="results" class="form-control" placeholder="ძიება" type="text">
         </form>
       </li>
     </ul>
@@ -103,7 +103,7 @@
         </a>
         <ul class="sub">
           <li><a class="" href="{{url('/admin/pages/profile')}}">პროფილი</a></li>
-          <li><a class="" href="{{url('/admin/questions/programming')}}"><span>კონტაქტი</span></a></li>
+          <!-- <li><a class="" href="{{url('/admin/questions/programming')}}"><span>კონტაქტი</span></a></li> -->
         </ul>
       </li>
 

@@ -19,6 +19,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['Admin']], function(){
 	Route::resource('/pages/profile/password', 'Admin\PasswordController');
 	Route::resource('/pages/profile/image', 'Admin\ImageController');
 	Route::get('/dashboard', 'Admin\AdminController@dashboard');
+	Route::get('/search', 'Admin\SearchController@index');
 	Route::get('/logout', 'AdminAuth\AuthController@logout');
 	Route::get('/pages/charts', function(){
 		return view('admin/pages/charts');
