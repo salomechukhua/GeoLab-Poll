@@ -23,8 +23,17 @@
 			{!! Form::text('type', null, ['placeholder' => 'ტიპი', 'class' => 'form-control', 'style' => 'height: 40px; width: 700px;']) !!}
 		</div>
 	</div>
+
 	<div class="col-xs-12">
-		<a class="btn btn-xs btn-success" href="{{ route('questions.index') }}">უკან</a>
-		<button type="submit" name="button" class="btn btn-xs btn-primary">დამატება</button>
+		<div class="form-group">
+			<p>
+			<strong>ქულა : </strong>
+			</p>
+			{!! Form::text('value', null, ['placeholder' => 'ქულა', 'class' => 'form-control', 'style' => 'height: 40px; width: 700px;']) !!}
+		</div>
+	</div>
+	<div class="col-xs-12">
+		<a class="btn btn-sm btn-info" href="{{ route('questions.index') }}">უკან</a>
+		<button type="submit" name="button" class="btn btn-sm btn-success">დამატება</button>
 	</div>
 </div>

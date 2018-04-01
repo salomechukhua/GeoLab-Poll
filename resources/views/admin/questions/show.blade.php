@@ -49,6 +49,13 @@
 						{{ $question->type }}
 					</div>
 				</div>
+
+				<div class="col-xs-12">
+					<div class="form-group">
+						<p><strong>ქულა : </strong></p>
+						{{ $question->value }}
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

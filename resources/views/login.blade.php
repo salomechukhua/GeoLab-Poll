@@ -44,7 +44,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
           -->
-          <a href="https://bootstrapmade.com/">Created</a> by <a href="https://bootstrapmade.com/">Tamar Mekhrishvili</a>
+          <a href="https://github.com/TamarLee">Created</a> by <a href="https://github.com/TamarLee">Tamar Mekhrishvili</a>
         </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
         <h3 class="page-header"><i class="fa fa-file-text-o"></i> პაროლის შეცვლა</h3>
         <ol class="breadcrumb">
           <li><i class="fa fa-home"></i><a href="{{url('/admin/dashboard')}}">მთავარი</a></li>
-          <li><i class="icon_table"></i>პაროლის შეცვლა</li>
+          <li><i class="icon_key"></i>პაროლის შეცვლა</li>
         </ol>
       </div>
     </div>

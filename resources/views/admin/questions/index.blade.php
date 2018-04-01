@@ -48,6 +48,7 @@ dd($_FILES);
 				<th>კითხვა</th>
 				<th>მიმართულება</th>
 				<th>ტიპი</th>
+				<th>ქულა</th>
 				<th width="300px">მოქმედებები</th>
 			</tr>
 			<?php $i=0;?>
@@ -57,6 +58,7 @@ dd($_FILES);
 				<td>{{ $value->question }}</td>
 				<td>{{ $value->subject }}</td>
 				<td>{{ $value->type }}</td>
+				<td>{{ $value->value }}</td>
 				<td>
 					<a class="btn btn-xs btn-info" href="{{ route('questions.show', $value->id) }}">ნახვა</a>
 					<a class="btn btn-xs btn-primary" href="{{ route('questions.edit', $value->id) }}">რედაქტირება</a>

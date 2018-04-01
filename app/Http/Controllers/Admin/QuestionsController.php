@@ -40,6 +40,8 @@ class QuestionsController extends Controller
         request()->validate([
             'question' => 'required',
             'subject' => 'required',
+            'type' => 'required',
+            'value' => 'required',
         ]);
         Question::create($request->all());
         return redirect()->route('questions.index')->with('success', 'კითხვა დამატებულია!');
@@ -81,6 +83,8 @@ class QuestionsController extends Controller
         request()->validate([
             'question' => 'required',
             'subject' => 'required',
+            'type' => 'required',
+            'value' => 'required',
         ]);
         Question::find($id)->update($request->all());
         return redirect()->route('questions.index')->with('success', 'კითხვა რედაქტირებულია!');
