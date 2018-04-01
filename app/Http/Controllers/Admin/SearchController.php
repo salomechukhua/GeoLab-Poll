@@ -11,10 +11,10 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $question = 
-        Question::where('question', 'like', '%'.$request->results.'%')
-        ->orWhere('subject', 'like', '%'.$request->results.'%')
-        ->orWhere('type', 'like', '%'.$request->results.'%')
-        ->orWhere('value', 'like', '%'.$request->results.'%')
+        Question::where('question', 'like', '%'.$request->search.'%')
+        ->orWhere('subject', 'like', '%'.$request->search.'%')
+        ->orWhere('type', 'like', '%'.$request->search.'%')
+        ->orWhere('value', 'like', '%'.$request->search.'%')
         ->get(); 
 
         if(count($question) > 0){

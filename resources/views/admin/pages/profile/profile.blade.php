@@ -60,7 +60,7 @@ dd($_FILES);
     <div class="row">
       <div class="col-sm-12">
         <div class="full-right">
-          <a class="btn btn-md btn-primary" href="{{ route('profile.edit', $value->id) }}">პროფილის რედაქტირება</a>
+          <a class="btn btn-md btn-info" href="{{ route('profile.edit', $value->id) }}">პროფილის რედაქტირება</a>
         </div>
       </div>
       <div class="col-sm-12">

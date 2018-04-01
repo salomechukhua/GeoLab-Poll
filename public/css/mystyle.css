@@ -8,15 +8,10 @@
 }
 
 .imginprofile {
-	width: 300px; 
-	height: 300px; 
+	width: 250px;
 	padding-bottom: 30px;
 }
 
 .colorfortable {
 	background-color: white;
-}
-
-.errormassege {
-	color: red;
 }

@@ -64,7 +64,6 @@
       });
     }
   </script>
-
   <script src="{{ url('js/jquery.js')}}"></script>
   <script src="{{ url('js/jquery-ui-1.10.4.min.js')}}"></script>
   <script src="{{ url('js/jquery-1.8.3.min.js')}}"></script>

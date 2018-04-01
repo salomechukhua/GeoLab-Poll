@@ -24,7 +24,7 @@ dd($_FILES);
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="full-right">
-					<a class="btn btn-xs btn-success" href="{{ route('questions.create') }}">ახალი კითხვის დამატება</a>
+					<a class="btn btn-md btn-success" href="{{ route('questions.create') }}">ახალი კითხვის დამატება</a>
 				</div>
 			</div>
 		</div>

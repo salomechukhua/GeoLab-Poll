@@ -13,7 +13,7 @@
     <ul class="nav top-menu">
       <li>
         <form class="navbar-form" action="{{ url('/admin/search') }}" method="GET">
-          <input name="results" class="form-control" placeholder="ძიება" type="text">
+          <input name="search" class="form-control" placeholder="ძიება" type="text">
         </form>
       </li>
     </ul>
