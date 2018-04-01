@@ -1,19 +1,16 @@
 <div class="row">
-	
+
 	<div class="col-xs-12">
 		<div class="form-group">
-			<p>
 			<strong>სახელი : </strong>
-			</p>
-			{!! Form::text('subject', null, ['placeholder' => 'სახელი', 'class' => 'form-control', 'style' => 'height: 40px; width: 700px;']) !!}
+			{!! Form::text('name', null, ['placeholder' => 'სახელი', 'class' => 'form-control']) !!}
 		</div>
 	</div>
+
 	<div class="col-xs-12">
 		<div class="form-group">
-			<p>
-			<strong>მეილი: </strong>
-			</p>
-			{!! Form::text('type', null, ['placeholder' => 'მეილი', 'class' => 'form-control', 'style' => 'height: 40px; width: 700px;']) !!}
+			<strong>მეილი : </strong>
+			{!! Form::text('email', null, ['placeholder' => 'მეილი', 'class' => 'form-control']) !!}
 		</div>
 	</div>
 
@@ -23,9 +20,12 @@
 			{!! Form::file('image', null) !!}
 		</div>
 	</div>
+
 	
+
+
 	<div class="col-xs-12">
-		<a class="btn btn-xs btn-success" href="{{ route('profile.index') }}">უკან</a>
-		<button type="submit" name="button" class="btn btn-xs btn-primary">შენახვა</button>
+		<a class="btn btn-xs btn-success" href="{{ route('profile.index') }}">Back</a>
+		<button type="submit" name="button" class="btn btn-xs btn-primary">Submit</button>
 	</div>
 </div>

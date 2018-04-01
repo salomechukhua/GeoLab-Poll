@@ -16,6 +16,7 @@ Route::post('/login', 'AdminAuth\AuthController@login');
 Route::group(['prefix'=>'/admin','middleware'=>['Admin']], function(){
 	Route::resource('/questions', 'Admin\QuestionsController');
 	Route::resource('/pages/profile', 'Admin\ProfileController');
+	Route::resource('/pages/profile/password', 'Admin\PasswordController');
 	Route::get('/dashboard', 'Admin\AdminController@dashboard');
 	Route::get('/logout', 'AdminAuth\AuthController@logout');
 	Route::get('/pages/charts', function(){

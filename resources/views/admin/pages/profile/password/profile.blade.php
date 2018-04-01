@@ -64,7 +64,7 @@ dd($_FILES);
       </div>
       <div class="col-sm-12">
         <div class="full-right">
-          <a class="btn btn-md btn-danger" href="{{ route('password.edit', $value->id) }}">პაროლის შეცვლა</a>
+          <a class="btn btn-md btn-danger" href="{{ route('profile.edit', $value->id) }}">პაროლის შეცვლა</a>
         </div>
       </div>
     </div>

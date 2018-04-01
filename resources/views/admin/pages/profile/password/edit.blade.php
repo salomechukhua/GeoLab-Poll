@@ -6,10 +6,10 @@
 
 		<div class="row" style="padding-bottom:20px;">
       <div class="col-lg-12">
-        <h3 class="page-header"><i class="fa fa-file-text-o"></i> პროფილის რედაქტირება</h3>
+        <h3 class="page-header"><i class="fa fa-file-text-o"></i> პაროლის შეცვლა</h3>
         <ol class="breadcrumb">
           <li><i class="fa fa-home"></i><a href="{{url('/admin/dashboard')}}">მთავარი</a></li>
-          <li><i class="icon_table"></i>პროფილი</li>
+          <li><i class="icon_table"></i>პაროლის შეცვლა</li>
         </ol>
       </div>
     </div>
@@ -26,8 +26,8 @@
 		@endif
 
 
-		{!! Form::model($admin, ['method' => 'PATCH', 'route' => ['profile.update', $admin->id],  'files' => true]) !!}
-		@include('admin.pages.profile.form')
+		{!! Form::model($admin, ['method' => 'PATCH', 'route' => ['password.update', $admin->id]]) !!}
+		@include('admin.pages.profile.password.form')
 		{!! Form::close() !!}
 
 

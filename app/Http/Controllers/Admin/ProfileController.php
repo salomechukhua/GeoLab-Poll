@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use App\User;
- 
 class ProfileController extends Controller
 {
     /**
@@ -15,62 +13,20 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $admin = User::all(); 
-        return view('admin.pages.profile.profile', ['admin'=>$admin]);
+        $admins = User::all(); 
+        return view('admin.pages.profile.profile', ['admins'=>$admins]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.pages.profile.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-
-
-        User::create($request->all());
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა დამატებულია!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        /*$admin = User::find($id);
-        return view('admin.pages.profile.show', compact('admin'));*/
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         $admin = User::find($id);
         return view('admin.pages.profile.edit', compact('admin'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +40,6 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required',
         ]);
-
         $originalFile = " ";
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -98,21 +53,10 @@ class ProfileController extends Controller
             'name' => $request->name,
             'image' => $originalFile,
             'email' => $request->email,
+            'password' => bcrypt('$request->password'),
         ];
         User::find($id)->update($data);
-
-        return redirect()->route('pages.profile.index')->with('success', 'პროფილი რედაქტირებულია!');
+        return redirect()->route('profile.index')->with('success', 'User Updated Succesfully');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        User::find($id)->delete();
-        return redirect()->route('pages.profile.index')->with('success', 'კითხვა წაშლილია!');
-    }
+    
 }
