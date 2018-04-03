@@ -2,18 +2,18 @@
 @section('content')
 <div class="container-fluid">
 	<div class="container">
-		<div align="center">
-			<?php $i=0; ?>
-			<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{$question[$i]->question }}</div>
-		</div>
-		<div align="center">
-			<button name="yes" onclick="myfunction()" class="btn btn-md btn-success yes" style="width: 100px; margin: 50px;">კი</button>
-			<button name="no" onclick="myfunction()" class="btn btn-md btn-danger no" style="width: 100px; margin: 50px;">არა</button>
-		</div>
-		
-	</div>
 
-	
+		<form action="{{ url('/') }}" method="get">
+			<input type="hidden" name="question" value="{{$k}}">
+			<div align="center">
+				<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{$question[$k-2]->question}}</div>
+			</div>
+			<div align="center">
+				<input name="value" type="submit" value="კი" class="btn btn-md btn-success yes" style="width: 100px; margin: 50px;">
+				<input name="value" type="submit" value="არა" class="btn btn-md btn-danger no" style="width: 100px; margin: 50px;">
+			</div>
+		</form>
+	</div>
 </div>
 
 

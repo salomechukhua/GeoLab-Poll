@@ -7,8 +7,14 @@ use App\Question;
 
 class QuestionController extends Controller
 {
-    public function showQuestion(){
+    public function showQuestion(Request $request){
     	$question = Question::all();
-    	return view('home', ['question' => $question]);
+    	if(count($request->value)==0){
+    		$k = 2;
+    		return view('home', ['question' => $question, 'k' => $k]);
+    	} else {
+    		$k = $request->question + 1;
+    		return view('home', ['question' => $question, 'k' => $k]);
+    	}
     }
 }
