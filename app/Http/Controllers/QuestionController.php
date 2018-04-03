@@ -13,8 +13,19 @@ class QuestionController extends Controller
 		$p = (int)session('programing');
 		$d = (int)session('design');
 		$q = (int)session('question');
+		$presult = (int)session('presult');
+		$dresult = (int)session('dresult');
+
+
 		
-		$k = $request->value;
+		if($request->value == 'კი'){
+			if ($q%2) {
+				$presult++;
+			} else {
+				$dresult++;
+			}
+		}
+
 		if($q < 8) {
 			$programing = Question::where([
 				['subject', 'პროგრამირება'],
@@ -40,7 +51,68 @@ class QuestionController extends Controller
 				}
 			}
 		} else {
-			return view('result');
+			
+			if($q==8){
+				if($dresult<2){
+					$programing = Question::where([
+						['subject', 'პროგრამირება'],
+						['type', 'საკონტროლო']
+					])->get();
+					$subject = $programing[0];
+					$q++;
+				}
+
+				if($presult<2){
+					$design = Question::where([
+						['subject', 'დიზაინი'],
+						['type', 'საკონტროლო']
+					])->get();
+					$subject = $design[0];
+					$d = 1;
+					$q++;
+				}
+
+				if($presult>$dresult){
+					$programing = Question::where([
+						['subject', 'პროგრამირება'],
+						['type', 'საკონტროლო']
+					])->get();
+					$subject = $programing[0];
+					$q++;
+				} else {
+					$design = Question::where([
+						['subject', 'დიზაინი'],
+						['type', 'საკონტროლო']
+					])->get();
+					$subject = $design[0];
+					$d = 1;
+					$q++;
+					
+				}
+
+			} else {
+				if($q==9){
+					if($request->value == 'კი'){
+						if($presult<2 || $dresult<2){
+							if ($d == 1) {
+								$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';
+							} else {
+								$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';
+							}
+							return view('result', ['answer' => $answer]);
+						} else {
+							$design = Question::where([
+								['type', 'ხანგრძლივობის დასადგენი']
+							])->get();
+							$subject = $design[0];
+						}
+						
+					} 
+				}
+				
+			}
+			
+			
 		}
 
 
@@ -48,8 +120,11 @@ class QuestionController extends Controller
 		return view('home', [
 			'question' => $subject, 
 			'p' => $p, 
-			'd' => $d, 
-			'k' => $k, 
-			'q' => $q]);
+			'd' => $d,
+			'q' => $q,
+			'dresult' => $dresult, 
+			'presult' => $presult,
+		]);
 	}
 }
+
