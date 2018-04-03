@@ -72,6 +72,7 @@ dd($_FILES);
 			</tr>
 			@endforeach
 		</table>
+		{!! $question->links() !!}
 
 	</section>
 </section>

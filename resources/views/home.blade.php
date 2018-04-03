@@ -19,7 +19,7 @@
 				<input name="value" type="submit" value="კი" class="btn btn-md btn-success yes" style="width: 100px; margin: 50px;">
 				<input name="value" type="submit" value="არა" class="btn btn-md btn-danger no" style="width: 100px; margin: 50px;">
 			</div>
-		</form>{{$dresult}} {{$presult}}
+		</form>
 	</div>
 </div>
 

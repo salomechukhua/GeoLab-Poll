@@ -15,7 +15,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $question = Question::all(); 
+        $question = Question::paginate(10);
         return view('admin.questions.index', ['question'=>$question]);
     }
 
