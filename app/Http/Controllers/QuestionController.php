@@ -8,6 +8,7 @@ use App\Question;
 class QuestionController extends Controller
 {
 	public function showQuestion(Request $request){
+		
 
 		$p = (int)session('programing');
 		$d = (int)session('design');
@@ -24,18 +25,17 @@ class QuestionController extends Controller
 			['type', 'შესავალი']
 		])->get();
 
-		if(count($q)==0){
-			$q = 1;
-			$p = 0;
+		if(count($request->value)==0){
 			$subject = $programing[$p];
+			$q++;
 		} else {
 			$q++;
-			if($p!=$d){
-				$d = $p;
+			if($p==$d){
 				$subject = $design[$d];
-			} else {
 				$p++;
+			} else {
 				$subject = $programing[$p];
+				$d++;
 			}
 		}
 
