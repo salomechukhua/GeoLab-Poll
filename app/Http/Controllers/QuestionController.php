@@ -15,14 +15,30 @@ class QuestionController extends Controller
 		$q = (int)session('question');
 		$presult = (int)session('presult');
 		$dresult = (int)session('dresult');
+		$i = (int)session('i');
+
 
 
 		
-		if($request->value == 'კი'){
-			if ($q%2) {
+		if($q < 9 && $request->value == 'კი'){
+			if($q%2) {
 				$presult++;
 			} else {
 				$dresult++;
+			}
+		}
+		if($q > 10 && $q < 15 && $request->value == 'კი'){
+			if($q%2) {
+				$presult+=2;
+			} else {
+				$dresult+=2;
+			}
+		}
+		if($q > 14 && $q < 17 && $request->value == 'კი'){
+			if($q%2) {
+				$presult+=5;
+			} else {
+				$dresult+=5;
 			}
 		}
 
@@ -53,39 +69,35 @@ class QuestionController extends Controller
 		} else {
 			
 			if($q==8){
+				$p = 0;
+				$d = 0;
 				if($dresult<2){
 					$programing = Question::where([
 						['subject', 'პროგრამირება'],
 						['type', 'საკონტროლო']
 					])->get();
-					$subject = $programing[0];
+					$subject = $programing[$p];
 					$q++;
-				}
-
-				if($presult<2){
+				} elseif($presult<2) {
 					$design = Question::where([
 						['subject', 'დიზაინი'],
 						['type', 'საკონტროლო']
 					])->get();
-					$subject = $design[0];
-					$d = 1;
+					$subject = $design[$d];
 					$q++;
-				}
-
-				if($presult>$dresult){
+				}elseif($presult>$dresult){
 					$programing = Question::where([
 						['subject', 'პროგრამირება'],
 						['type', 'საკონტროლო']
 					])->get();
-					$subject = $programing[0];
+					$subject = $programing[$p];
 					$q++;
 				} else {
 					$design = Question::where([
 						['subject', 'დიზაინი'],
 						['type', 'საკონტროლო']
 					])->get();
-					$subject = $design[0];
-					$d = 1;
+					$subject = $design[$d];
 					$q++;
 					
 				}
@@ -93,22 +105,88 @@ class QuestionController extends Controller
 			} else {
 				if($q==9){
 					if($request->value == 'კი'){
-						if($presult<2 || $dresult<2){
-							if ($d == 1) {
-								$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';
-							} else {
-								$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';
-							}
+						if($presult < 2){
+							$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';
 							return view('result', ['answer' => $answer]);
-						} else {
-							$design = Question::where([
-								['type', 'ხანგრძლივობის დასადგენი']
-							])->get();
-							$subject = $design[0];
+						} 
+						if ($dresult < 2){
+							$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';
+							return view('result', ['answer' => $answer]);
 						}
-						
-					} 
+
+						$design = Question::where([
+							['type', 'ხანგრძლივობის დასადგენი']
+						])->get();
+						$subject = $design[$d];
+						$dresult = 0;
+						$presult = 0;
+						$q++;
+
+					} else {
+						$answer = 'ჯერ არაა შენი ამბავი გადაწყვეტილი!';
+						return view('result', ['answer' => $answer]);
+					}
+				} elseif($q == 10) {
+					if ($request->value == 'კი') {
+						$i = 1;
+					} else {
+						$i = 2;
+					}
+				} 
+				if (($q < 17) && ($i == 1)){
+					$q++;
+					
+					$programing = Question::where([
+						['subject', 'ინტერფეისის დიზაინი']
+					])->get();
+					$design = Question::where([
+						['subject', '3D დიზაინი']
+					])->get();
+
+
+					
+					if($p==$d){
+						$subject = $programing[$p];
+						$p++;
+					} else {
+						$subject = $design[$d];
+						$d++;
+					}
+					
 				}
+				if($q > 17){
+					if($presult < 3){
+						$answer = 'არც შენი ამბავი გადამიწყვიტავს ჯერ!';
+						return view('result', ['answer' => $answer]);
+					} 
+					if ($dresult < 3){
+						$answer = 'არც შენი ამბავი გადამიწყვიტავს ჯერ!';
+						return view('result', ['answer' => $answer]);
+					}
+
+				}
+
+				/*if (($q < 13) && ($i == 2)){
+					$q++;
+					$programing = Question::where([
+						['subject', 'ინტერფეისის დიზაინი']
+					])->get();
+
+					$design = Question::where([
+						['subject', '3D დიზაინი']
+					])->get();
+
+					
+					if($p==$d){
+						$subject = $design[$d];
+						$p++;
+					} else {
+						$subject = $programing[$p];
+						$d++;
+					}
+					
+					$q++;
+				}*/
 				
 			}
 			
@@ -122,6 +200,7 @@ class QuestionController extends Controller
 			'p' => $p, 
 			'd' => $d,
 			'q' => $q,
+			'i' => $i,
 			'dresult' => $dresult, 
 			'presult' => $presult,
 		]);
