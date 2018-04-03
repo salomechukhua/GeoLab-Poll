@@ -4,9 +4,9 @@
 	<div class="container">
 
 		<form action="{{ url('/') }}" method="get">
-			<input type="hidden" name="question" value="{{$k}}">
+			<?php session(['question' => $k]); ?>
 			<div align="center">
-				<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{$question[$k-2]->question}}</div>
+				<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{$question[$k]->question}}</div>
 			</div>
 			<div align="center">
 				<input name="value" type="submit" value="კი" class="btn btn-md btn-success yes" style="width: 100px; margin: 50px;">

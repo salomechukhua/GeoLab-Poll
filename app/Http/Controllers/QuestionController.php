@@ -10,10 +10,10 @@ class QuestionController extends Controller
     public function showQuestion(Request $request){
     	$question = Question::all();
     	if(count($request->value)==0){
-    		$k = 2;
+    		$k = 0;
     		return view('home', ['question' => $question, 'k' => $k]);
     	} else {
-    		$k = $request->question + 1;
+    		$k = (int)session('question') + 1;
     		return view('home', ['question' => $question, 'k' => $k]);
     	}
     }
