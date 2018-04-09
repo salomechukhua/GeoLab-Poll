@@ -178,6 +178,22 @@ class QuestionController extends Controller
 			}
 		}
 
+		if($quantityOfQuestions == 18 && $duration == 'ხანგრძლივი'){
+			if($programing_result > 2 || $design_result > 2){
+				if($programing_result > $design_result){
+					$answer = 'თქვენ ინტერფეისის დიზაინისთვის ხართ დაბადებული!';	
+					return view('result', ['answer' => $answer]);
+				} else {
+					$answer = 'თქვენ 3D დიზაინისთვის ხართ დაბადებული!';	
+					return view('result', ['answer' => $answer]);
+				}
+				if($programing_result == $design_result){
+					$answer = 'გამოვა ასარჩევი ვარიანტების მქონე კითხვა';	
+					return view('result', ['answer' => $answer]);
+				}
+			}
+		}
+
 		if($duration == 'ხანმოკლე' && 
 			$quantityOfQuestions > 10 && 
 			$quantityOfQuestions < 20) 
