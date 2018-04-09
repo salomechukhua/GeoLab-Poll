@@ -5,11 +5,13 @@
 
 		<form action="{{ url('/') }}" method="get">
 			<?php session([
-				'programing' => $programing, 
-				'design' => $design,
+				'first' => $first, 
+				'second' => $second,
+				'third' => $third,
 				'quantityOfQuestions' => $quantityOfQuestions,
-				'programing_result' => $programing_result, 
-				'design_result' => $design_result,
+				'firstCourseResult' => $firstCourseResult, 
+				'secondCourseResult' => $secondCourseResult,
+				'thirdCourseResult' => $thirdCourseResult,
 				'duration' => $duration, ]);
 				?>
 			<div align="center">
@@ -20,6 +22,9 @@
 				<input name="value" type="submit" value="არა" class="btn btn-md btn-danger no" style="width: 100px; margin: 50px;">
 			</div>
 		</form>
+		first: {{$first}}
+		second: {{$second}}
+		third: {{$third}}
 	</div>
 </div>
 
