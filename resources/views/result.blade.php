@@ -9,10 +9,11 @@
 
 <?php session([
 	'programing' => 0, 
-	'design' => 0, 
-	'question' => 0,
-	'dresult' => 0, 
-	'presult' =>0]); ?>
+	'design' => 0,
+	'quantityOfQuestions' => 0,
+	'programing_result' => 0, 
+	'design_result' => 0,
+	'duration' => 0,]); ?>
 
 <form action="{{ url('/') }}" method="post">
 	<div align="center">

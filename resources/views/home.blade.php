@@ -9,7 +9,8 @@
 				'design' => $design,
 				'quantityOfQuestions' => $quantityOfQuestions,
 				'programing_result' => $programing_result, 
-				'design_result' => $design_result, ]);
+				'design_result' => $design_result,
+				'duration' => $duration, ]);
 				?>
 			<div align="center">
 				<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{ $question->question }}</div>
