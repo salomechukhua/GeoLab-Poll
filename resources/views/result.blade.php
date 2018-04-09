@@ -5,7 +5,7 @@
 	<div style="width: 600px; height: 120px; background-color:pink; margin: 100px; padding: 40px;">
 		{{$answer}}
 	</div>
-</div>
+</div> 
 
 <?php session([
 	'programing' => 0, 

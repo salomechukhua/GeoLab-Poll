@@ -5,12 +5,11 @@
 
 		<form action="{{ url('/') }}" method="get">
 			<?php session([
-				'programing' => $p, 
-				'design' => $d, 
-				'question' => $q, 
-				'i' => $i, 
-				'dresult' => $dresult, 
-				'presult' => $presult]); 
+				'programing' => $programing, 
+				'design' => $design,
+				'quantityOfQuestions' => $quantityOfQuestions,
+				'programing_result' => $programing_result, 
+				'design_result' => $design_result, ]);
 				?>
 			<div align="center">
 				<div style="width: 600px; height: 100px; background-color: 	#ccffff; margin: 100px; padding: 40px;">{{ $question->question }}</div>
@@ -23,5 +22,5 @@
 	</div>
 </div>
 
-
+ 
 @endsection

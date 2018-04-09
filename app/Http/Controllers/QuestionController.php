@@ -10,199 +10,142 @@ class QuestionController extends Controller
 	public function showQuestion(Request $request){
 		
 
-		$p = (int)session('programing');
-		$d = (int)session('design');
-		$q = (int)session('question');
-		$presult = (int)session('presult');
-		$dresult = (int)session('dresult');
-		$i = (int)session('i');
-
-
-
+		$programing = (int)session('programing');
+		$design = (int)session('design');
+		$quantityOfQuestions = (int)session('quantityOfQuestions');
+		$programing_result = (int)session('programing_result');
+		$design_result = (int)session('design_result');
 		
-		if($q < 9 && $request->value == 'კი'){
-			if($q%2) {
-				$presult++;
-			} else {
-				$dresult++;
-			}
+
+
+
+
+		if ($quantityOfQuestions == 0) {
+			$quantityOfQuestions = 1;
+		} else {
+			$quantityOfQuestions ++;
 		}
-		if($q > 10 && $q < 15 && $request->value == 'კი'){
-			if($q%2) {
-				$presult+=2;
+
+		if($quantityOfQuestions > 1 && 
+			$quantityOfQuestions < 9 && 
+			$request->value == 'კი') {
+			if($quantityOfQuestions%2) {
+				$design_result ++;
 			} else {
-				$dresult+=2;
-			}
-		}
-		if($q > 14 && $q < 17 && $request->value == 'კი'){
-			if($q%2) {
-				$presult+=5;
-			} else {
-				$dresult+=5;
+				$programing_result ++;
 			}
 		}
 
-		if($q < 8) {
-			$programing = Question::where([
+		if ($quantityOfQuestions <= 8) {
+			$questionsFromPrograming = Question::where([
 				['subject', 'პროგრამირება'],
 				['type', 'შესავალი']
 			])->get();
 
-			$design = Question::where([
+			$questionsFromDesign = Question::where([
 				['subject', 'დიზაინი'],
 				['type', 'შესავალი']
 			])->get();
 
-			if($q==0){
-				$subject = $programing[$p];
-				$q++;
-			} else {
-				$q++;
-				if($p==$d){
-					$subject = $design[$d];
-					$p++;
-				} else {
-					$subject = $programing[$p];
-					$d++;
+			if ($programing == $design) {								// უზრუნველყოფს პროგრამირების
+				$question = $questionsFromPrograming[$programing];		// და დიზაინის 
+				$programing ++;											// მიმართულებებიდან
+			} else {													// კითხვების
+				$question = $questionsFromDesign[$design];				// მონაცვლეობით
+				$design ++;												// გამოტანას.
+			}
+		}
+
+		if ($quantityOfQuestions == 9) {
+
+			$programing = 0;
+			$design = 0;
+
+
+			if($programing_result > 2 && $design_result < 2){  			// პროგრამირებიდან 3, ან მეტი,
+				$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';		// ხოლო დიზაინიდან 1, ან ნაკლები
+				return view('result', ['answer' => $answer]);			// დადებითი პასუხის შემთხვევაში 
+			}															// გამოაქვს პასუხი: პროგრამირება.
+
+
+			if($design_result > 2 && $programing_result < 2){ 			// დიზაინიდან 3, ან მეტი,
+				$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';			// ხოლო პროგრამირებიდან 1, ან ნაკლები
+				return view('result', ['answer' => $answer]);			// დადებითი პასუხის შემთხვევაში
+			}															// გამოაქვს პასუხი: დიზაინი.
+
+
+			if ($design_result < 2) {									// დიზაინიდან 1, ან ნაკლები დადებითი
+				$questionsFromPrograming = Question::where([			// პასუხის შემთხვევაში, როცა არც 
+					['subject', 'პროგრამირება'],							// პროგრამირებაშია 2-ზე მეტი ქულა, ისმევა
+					['type', 'საკონტროლო']								// საკონტროლო კითხვა პროგრამირებიდან.
+				])->get();
+				$question = $questionsFromPrograming[$programing];
+			} elseif ($programing_result < 2){       					// პროგრამირებიდან 1, ან ნაკლები დადებითი 
+				$questionsFromDesign = Question::where([				// პასუხის შემთხვევაში, როცა არც 
+					['subject', 'დიზაინი'],								// დიზაინიდანაა 2-ზე მეტი ქულა, ისმევა 
+					['type', 'საკონტროლო']								// საკონტროლო კითხვა დიზაინიდან.
+				])->get();
+				$question = $questionsFromDesign[$design];
+			} else {													
+				if ($design_result > $programing_result) {				// თუ დიზაინიდან უფრო მეტ კითხვას
+					$questionsFromDesign = Question::where([			// გასცა დადებითი პასუხი,
+						['subject', 'დიზაინი'],							// დაისმება საკონტროლო კითხვა
+						['type', 'საკონტროლო']							// დიზაინიდან.
+					])->get();
+					$question = $questionsFromDesign[$design];
+				} else {												// თუ პროგრამირებიდან უფრო მეტ კითხვას
+					$questionsFromPrograming = Question::where([		// გასცა დადებითი პასუხი, ან თანაბარი დადებითი	
+						['subject', 'პროგრამირება'],						// პასუხები ორივე მიმართულებიდან თანაბრადაა, 
+						['type', 'საკონტროლო']							// დაისმება საკონტროლო კითხვა პროგრამირებიდან.	
+					])->get();
 				}
 			}
-		} else {
-			
-			if($q==8){
-				$p = 0;
-				$d = 0;
-				if($dresult<2){
-					$programing = Question::where([
-						['subject', 'პროგრამირება'],
-						['type', 'საკონტროლო']
-					])->get();
-					$subject = $programing[$p];
-					$q++;
-				} elseif($presult<2) {
-					$design = Question::where([
-						['subject', 'დიზაინი'],
-						['type', 'საკონტროლო']
-					])->get();
-					$subject = $design[$d];
-					$q++;
-				}elseif($presult>$dresult){
-					$programing = Question::where([
-						['subject', 'პროგრამირება'],
-						['type', 'საკონტროლო']
-					])->get();
-					$subject = $programing[$p];
-					$q++;
-				} else {
-					$design = Question::where([
-						['subject', 'დიზაინი'],
-						['type', 'საკონტროლო']
-					])->get();
-					$subject = $design[$d];
-					$q++;
-					
-				}
+		}
 
-			} else {
-				if($q==9){
-					if($request->value == 'კი'){
-						if($presult < 2){
-							$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';
-							return view('result', ['answer' => $answer]);
-						} 
-						if ($dresult < 2){
-							$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';
-							return view('result', ['answer' => $answer]);
-						}
+		if ($quantityOfQuestions == 10 && $request->value == 'კი') {		// თუ საკონტროლო კითხვაზე დადებითი
+			$questionsFromPrograming = Question::where([				// პასუხი გაცსა, დაისმება ხანგძლივობის 
+				['type', 'ხანგრძლივობის დასადგენი']							// დასადგენი კითხვა
+			])->get();
+			$question = $questionsFromPrograming[$programing];
+		}
 
-						$design = Question::where([
-							['type', 'ხანგრძლივობის დასადგენი']
-						])->get();
-						$subject = $design[$d];
-						$dresult = 0;
-						$presult = 0;
-						$q++;
+		if ($quantityOfQuestions == 10 && $request->value == 'არა') {  	// თუ საკონტროლო კითხვაზე უარყოფითი პასუხი გასცა
 
-					} else {
-						$answer = 'ჯერ არაა შენი ამბავი გადაწყვეტილი!';
-						return view('result', ['answer' => $answer]);
-					}
-				} elseif($q == 10) {
-					if ($request->value == 'კი') {
-						$i = 1;
-					} else {
-						$i = 2;
-					}
-				} 
-				if (($q < 17) && ($i == 1)){
-					$q++;
-					
-					$programing = Question::where([
-						['subject', 'ინტერფეისის დიზაინი']
-					])->get();
-					$design = Question::where([
-						['subject', '3D დიზაინი']
-					])->get();
-
-
-					
-					if($p==$d){
-						$subject = $programing[$p];
-						$p++;
-					} else {
-						$subject = $design[$d];
-						$d++;
-					}
-					
-				}
-				if($q > 17){
-					if($presult < 3){
-						$answer = 'არც შენი ამბავი გადამიწყვიტავს ჯერ!';
-						return view('result', ['answer' => $answer]);
-					} 
-					if ($dresult < 3){
-						$answer = 'არც შენი ამბავი გადამიწყვიტავს ჯერ!';
-						return view('result', ['answer' => $answer]);
-					}
-
-				}
-
-				/*if (($q < 13) && ($i == 2)){
-					$q++;
-					$programing = Question::where([
-						['subject', 'ინტერფეისის დიზაინი']
-					])->get();
-
-					$design = Question::where([
-						['subject', '3D დიზაინი']
-					])->get();
-
-					
-					if($p==$d){
-						$subject = $design[$d];
-						$p++;
-					} else {
-						$subject = $programing[$p];
-						$d++;
-					}
-					
-					$q++;
-				}*/
-				
+			if ($design_result < 2) {
+				$answer = 'თქვენ პროგრამირებისთვის ხართ დაბადებული!';	
+				return view('result', ['answer' => $answer]);
 			}
-			
-			
+
+			if ($programing_result < 2) {
+				$answer = 'თქვენ დიზაინისთვის ხართ დაბადებული!';	
+				return view('result', ['answer' => $answer]);
+			}
+
+			if ($design_result == $programing_result) {
+				$questionsFromDesign = Question::where([			// გასცა დადებითი პასუხი,
+					['subject', 'დიზაინი'],							// დაისმება საკონტროლო კითხვა
+					['type', 'საკონტროლო']							// დიზაინიდან.
+				])->get();
+				$question = $questionsFromDesign[$design];
+				$i = 1;
+			} else {
+				$questionsFromPrograming = Question::where([				// პასუხი გაცსა, დაისმება ხანგძლივობის 
+					['type', 'ხანგრძლივობის დასადგენი']							// დასადგენი კითხვა
+				])->get();
+				$question = $questionsFromPrograming[$programing];
+			}
+
 		}
 
 
 
 		return view('home', [
-			'question' => $subject, 
-			'p' => $p, 
-			'd' => $d,
-			'q' => $q,
-			'i' => $i,
-			'dresult' => $dresult, 
-			'presult' => $presult,
+			'question' => $question, 
+			'programing' => $programing, 
+			'design' => $design,
+			'quantityOfQuestions' => $quantityOfQuestions,
+			'programing_result' => $programing_result,
+			'design_result' => $design_result, 
 		]);
 	}
 }
