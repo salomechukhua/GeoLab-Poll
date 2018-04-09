@@ -163,7 +163,7 @@ class QuestionController extends Controller
 			}
 		}
 
-		if($duration == 'ხანგრძლივი' && 
+		/*if($duration == 'ხანგრძლივი' && 
 			$quantityOfQuestions > 10 && 
 			$quantityOfQuestions < 17) 
 		{
@@ -187,7 +187,7 @@ class QuestionController extends Controller
 				$question = $secondCourse[$second];					// მონაცვლეობით
 				$second ++;											// გამოტანას.
 			}
-		}
+		}*/
 
 		if($quantityOfQuestions == 18 && $duration == 'ხანგრძლივი'){
 			if($firstCourseResult > 2 || $secondCourseResult > 2){
@@ -235,18 +235,21 @@ class QuestionController extends Controller
 
 
 				
-				if($first != $second && $second == $third){
-					$question = $secondCourse[$second];	
-					$second ++;	
+				if($first == $second){
+					if($second == $third){
+						$question = $firstCourse[$first];
+						$first ++;
+					} else {
+						$question = $thirdCourse[$third];
+						$third ++;
+					}
+				} else {
+					if($second == $third){
+						$question = $secondCourse[$second];
+						$second ++;
+					}
 				}
-				if ($first == $second && $first == $third) {	
-					$question = $firstCourse[$first];					
-					$first ++;									
-				} 
-				if($first == $second && $second != $third){
-					$question = $thirdCourse[$third];
-					$third ++;
-				}
+
 			}
 
 
