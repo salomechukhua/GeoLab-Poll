@@ -2,10 +2,6 @@
 
 @section('content')
 
-@if(!isset($_FILES))
-dd($_FILES);
-@endif
-
 
 <section id="main-content" style="padding-left:30px;">
 	<section class="wrapper">
