@@ -21,8 +21,6 @@ Route::group(['prefix'=>'/admin','middleware'=>['Admin']], function(){
 	Route::get('/dashboard', 'Admin\AdminController@dashboard');
 	Route::get('/search', 'Admin\SearchController@index');
 	Route::get('/logout', 'AdminAuth\AuthController@logout');
-	Route::get('/pages/charts', function(){
-		return view('admin/pages/charts');
-	});
+	Route::get('/pages/charts', 'Admin\ChartsController@index');
 	
 });

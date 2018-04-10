@@ -163,7 +163,7 @@ class QuestionController extends Controller
 			}
 		}
 
-		/*if($duration == 'ხანგრძლივი' && 
+		if($duration == 'ხანგრძლივი' && 
 			$quantityOfQuestions > 10 && 
 			$quantityOfQuestions < 17) 
 		{
@@ -187,7 +187,7 @@ class QuestionController extends Controller
 				$question = $secondCourse[$second];					// მონაცვლეობით
 				$second ++;											// გამოტანას.
 			}
-		}*/
+		}
 
 		if($quantityOfQuestions == 18 && $duration == 'ხანგრძლივი'){
 			if($firstCourseResult > 2 || $secondCourseResult > 2){
