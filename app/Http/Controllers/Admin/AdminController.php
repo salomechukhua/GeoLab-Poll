@@ -17,9 +17,10 @@ class AdminController extends Controller
     public function dashboard(){
 
     	$chart1 = Charts::database(Question::all(), 'bar', 'highcharts')
-	    ->elementLabel("Total")
+	    ->elementLabel("რაოდენობა")
 	    ->dimensions(1000, 500)
 	    ->responsive(true)
+        ->title('კითხვების სტატისტიკა')
 	    ->groupBy('subject');
 
 	    $question = Question::paginate(10);

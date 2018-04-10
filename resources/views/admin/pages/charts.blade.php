@@ -40,6 +40,19 @@
 
     <div class="app">
       <center>
+        {!! $chart3->html() !!}
+      </center>
+    </div>
+    <!-- End Of Main Application -->
+    {!! Charts::scripts() !!}
+    {!! $chart3->script() !!}
+
+    <br>
+    <br>
+    <br>
+
+    <div class="app">
+      <center>
         {!! $chart2->html() !!}
       </center>
     </div>
